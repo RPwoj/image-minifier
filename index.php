@@ -3,6 +3,13 @@
   <input type="submit" name="submit">
 </form>
 <?php
+require_once __DIR__ . '/vendor/autoload.php';
+use Compressor\Compressor;
+
+$compressor = new Compressor();
+
+echo $compressor->show();
+
 $time = new DateTime();
 $time = $time->format('Y-m-d H:i:s');
 
