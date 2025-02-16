@@ -3,6 +3,7 @@
 namespace Compressor;
 
 use Datetime;
+use stdClass;
 
 class Compressor
 {
@@ -22,7 +23,7 @@ class Compressor
         $this->files = $files;
     }
 
-    public function minify(): string
+    public function minify(): object
     {
         if ($this->files) {
             
@@ -36,6 +37,10 @@ class Compressor
             }
         }
 
-        return basename($this->targetFile);
+        $res = new stdClass();
+        $res->folder = $this->dirName;
+        $res->file = basename($this->targetFile);
+
+        return $res;
     }
 }

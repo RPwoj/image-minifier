@@ -6,26 +6,10 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 use Compressor\Compressor;
 
-
-
-// echo $compressor->show();
-
-// $time = new DateTime();
-// $time = $time->format('Y-m-d H:i:s');
-// $dirName = hash('adler32', $time);
-// $targetDir = __DIR__ . "/../uploads/" . $dirName;
-
 if (isset($_POST['submit'])) {
     $compressor = new Compressor($_FILES);
-    echo $compressor->minify();
-    // foreach ($files as $file) {
-
-    //   mkdir($targetDir, 0755);
-    //   $targetFile = $targetDir . '/' . basename($file['name']);
-    //   move_uploaded_file($file["tmp_name"], $targetFile);
-
-    //   shell_exec("pngquant --force --skip-if-larger --quality=65-80 --output " . escapeshellarg($targetFile) . " " . escapeshellarg($targetFile));
-    // }
+    $args = $compressor->minify();
+    echo '<a href="/download.php/?dir=' . $args->folder . '&name=' . $args->file . '" target="_blank">download</a>';
 }
 
 ?>
