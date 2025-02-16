@@ -9,7 +9,7 @@ use Compressor\Compressor;
 if (isset($_POST['submit'])) {
     $compressor = new Compressor($_FILES);
     $args = $compressor->minify();
-    echo '<a href="/download.php/?dir=' . $args->folder . '&name=' . $args->file . '" target="_blank">download</a>';
+    echo '<a href="https://minifier.ytq.pl/download.php/?dir=' . $args->folder . '&file=' . $args->file . '" target="_blank">download</a>';
 }
 
 ?>
