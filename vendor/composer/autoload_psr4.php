@@ -6,5 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Compressor\\' => array($baseDir . '/class'),
+    'App\\Utils\\' => array($baseDir . '/class'),
 );

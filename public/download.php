@@ -1,4 +1,7 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
+use App\Utils\FileCleaner;
+
 if (isset($_GET['dir']) && isset($_GET['file'])) {
     $filepath = '/var/www/minifier.ytq.pl/uploads/' . $_GET['dir'] . '/' . $_GET['file'];
     $size = filesize($filepath);
@@ -15,5 +18,8 @@ if (isset($_GET['dir']) && isset($_GET['file'])) {
     header('Content-Length: ' . $size);
     
     readfile($filepath);
+
+    $fileCleaner = new FileCleaner();
+    print_r($fileCleaner->delete($_GET['dir']));
     exit;
 }

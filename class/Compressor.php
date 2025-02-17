@@ -1,6 +1,6 @@
 <?php
 
-namespace Compressor;
+namespace App\Utils;
 
 use Datetime;
 use stdClass;
@@ -13,7 +13,6 @@ class Compressor
     private $targetDir;
     private $files;
     private $targetFile;
-
 
     public function __construct($files) {
         $dateTime = new DateTime();

@@ -4,7 +4,7 @@
 </form>
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
-use Compressor\Compressor;
+use App\Utils\Compressor;
 
 if (isset($_POST['submit'])) {
     $compressor = new Compressor($_FILES);
