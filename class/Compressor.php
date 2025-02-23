@@ -25,14 +25,12 @@ class Compressor
     public function minify(): object
     {
         if ($this->files) {
-            
             foreach ($this->files as $file) {
                 mkdir($this->targetDir, 0755);
                 $this->targetFile = $this->targetDir . '/' . basename($file['name']);
                 move_uploaded_file($file["tmp_name"], $this->targetFile);
 
                 shell_exec("pngquant --force --skip-if-larger --quality=65-80 --output " . escapeshellarg($this->targetFile) . " " . escapeshellarg($this->targetFile));
-
             }
         }
 
