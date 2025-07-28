@@ -1,2 +1,2 @@
 #!/bin/sh
-find ./ -maxdepth 1 -type d -mtime +1 -exec rm -r {} \;
+find /var/www/minifier.ytq.pl/uploads/ -maxdepth 1 -type d -mtime +1 -exec rm -r {} \;
