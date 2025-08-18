@@ -6,7 +6,7 @@ class FileCleaner
 {
 
     public function delete($pathName) {
-        $fullPath = '/var/www/minifier.ytq.pl/uploads/' . $pathName;
+        $fullPath = __DIR__ . '/../uploads/' . $pathName;
         $files = array_diff(scandir($fullPath), array('.', '..'));
 
         foreach ($files as $file) {

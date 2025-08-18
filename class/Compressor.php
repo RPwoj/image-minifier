@@ -13,31 +13,42 @@ class Compressor
     private $targetDir;
     private $files;
     private $targetFile;
+    private $res;
 
     public function __construct($files) {
         $dateTime = new DateTime();
         $this->time = $dateTime->format('Y-m-d H:i:s');
         $this->dirName = hash('adler32', $this->time);
-        $this->targetDir = "/var/www/minifier.ytq.pl/uploads/" . $this->dirName;
+        $this->targetDir = __DIR__ . '/../uploads/' . $this->dirName;
         $this->files = $files;
     }
 
     public function minify(): object
     {
         if ($this->files) {
-            foreach ($this->files as $file) {
-                mkdir($this->targetDir, 0755);
-                $this->targetFile = $this->targetDir . '/' . basename($file['name']);
-                move_uploaded_file($file["tmp_name"], $this->targetFile);
+            mkdir($this->targetDir, 0755);
 
-                shell_exec("pngquant --force --skip-if-larger --quality=65-80 --output " . escapeshellarg($this->targetFile) . " " . escapeshellarg($this->targetFile));
+            for($i = 0; $i < count($_FILES['files']['name']); $i++) {
+                $this->targetFile = $this->targetDir . '/' . basename($this->files['name'][$i]);
+                move_uploaded_file($this->files["tmp_name"][$i], $this->targetFile);
+                shell_exec("pngquant --force --skip-if-larger --quality=40-80 --output " . escapeshellarg($this->targetFile) . " " . escapeshellarg($this->targetFile));
             }
+        
+            $this->res = new stdClass();
+
+            if(count($_FILES['files']['name']) > 1) {
+                shell_exec("cd " . escapeshellarg($this->targetDir) . " && zip -rm " . escapeshellarg($this->targetDir . "/minified-images.zip") . " .");
+                $this->res->file = "minified-images.zip";
+            } else {
+                $this->res->file = basename($this->targetFile);
+            }
+
+            $this->res->folder = $this->dirName;
+
+            return $this->res;
         }
 
-        $res = new stdClass();
-        $res->folder = $this->dirName;
-        $res->file = basename($this->targetFile);
 
-        return $res;
+
     }
 }

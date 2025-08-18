@@ -3,7 +3,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use App\Utils\FileCleaner;
 
 if (isset($_GET['dir']) && isset($_GET['file'])) {
-    $filepath = '/var/www/minifier.ytq.pl/uploads/' . $_GET['dir'] . '/' . $_GET['file'];
+    $basePath = __DIR__ . '/../uploads/';
+    $filepath  = realpath($basePath . '/' . $_GET['dir'] . '/' . $_GET['file']);
     $size = filesize($filepath);
 
     header('Content-Type: image/png');
