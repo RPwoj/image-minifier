@@ -29,9 +29,18 @@ class Compressor
             mkdir($this->targetDir, 0755);
 
             for($i = 0; $i < count($_FILES['files']['name']); $i++) {
-                $this->targetFile = $this->targetDir . '/' . basename($this->files['name'][$i]);
-                move_uploaded_file($this->files["tmp_name"][$i], $this->targetFile);
-                shell_exec("pngquant --force --skip-if-larger --quality=40-80 --output " . escapeshellarg($this->targetFile) . " " . escapeshellarg($this->targetFile));
+
+                if ($this->files['type'][$i] == 'image/png') {
+                    $this->targetFile = $this->targetDir . '/' . basename($this->files['name'][$i]);
+                    move_uploaded_file($this->files["tmp_name"][$i], $this->targetFile);
+                    shell_exec("pngquant --force --skip-if-larger --quality=40-80 --output " . escapeshellarg($this->targetFile) . " " . escapeshellarg($this->targetFile));
+                } else if ($this->files['type'][$i] == 'image/jpeg') {
+                    $this->targetFile = $this->targetDir . '/' . basename($this->files['name'][$i]);
+                    move_uploaded_file($this->files["tmp_name"][$i], $this->targetFile);
+                    shell_exec("magick " . escapeshellarg($this->targetFile) . " -quality 85 " . escapeshellarg($this->targetFile));
+                } else {
+                    
+                }
             }
         
             $this->res = new stdClass();
@@ -47,8 +56,5 @@ class Compressor
 
             return $this->res;
         }
-
-
-
     }
 }
