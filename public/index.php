@@ -12,6 +12,7 @@
     <div class="container">
       <div class="row">
         <div class="col">
+          <span class="title">JPG / PNG Minifier</span>
           <div class="form-holder">
             <form action="#" method="post" enctype="multipart/form-data">
               <input type="file" id="file-to-upload" name="files[]" class="input-file" multiple>

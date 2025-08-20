@@ -38,8 +38,6 @@ class Compressor
                     $this->targetFile = $this->targetDir . '/' . basename($this->files['name'][$i]);
                     move_uploaded_file($this->files["tmp_name"][$i], $this->targetFile);
                     shell_exec("magick " . escapeshellarg($this->targetFile) . " -quality 85 " . escapeshellarg($this->targetFile));
-                } else {
-                    
                 }
             }
         

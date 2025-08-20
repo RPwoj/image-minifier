@@ -27,6 +27,15 @@ body {
     align-items: center;
 }
 
+
+.title {
+    display: block;
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+
 .form-holder {
     padding: 1.5rem;
     border: 1px solid var(--black);
