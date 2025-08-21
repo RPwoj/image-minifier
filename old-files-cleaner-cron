@@ -1,0 +1,1 @@
+0 0 * * * /bin/sh /var/www/html/old-files-cleaner.sh

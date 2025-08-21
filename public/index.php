@@ -25,7 +25,7 @@
 
                 echo '<div class="downloads-holder">';
                 echo '<span class="download-file-name">' . $args->file . '</span>';
-                echo '<a class="btn download-url" href="/public/download.php/?dir=' . $args->folder . '&file=' . $args->file . '" target="_blank">&#x21e9;</a>';
+                echo '<a class="btn download-url" href="/download.php/?dir=' . $args->folder . '&file=' . $args->file . '" target="_blank">&#x21e9;</a>';
                 echo '</div>';
             } ?>
           </div>
